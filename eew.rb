@@ -7,19 +7,24 @@ require "ipaddr"
 require "slack-ruby-client"
 require "lru_redux"
 
-ServerListURL = "http://lst10s-sp.wni.co.jp/server_list.txt"
-UserID = "test@example.com" # WNI
+# WNI
+UserID = "test@example.com"
 Password = "changeme"
+ServerListURL = "http://lst10s-sp.wni.co.jp/server_list.txt"
+
+# Slack
+SlackToken = "token"
 Channel = "#channel"
 SlackUsername =  "緊急地震速報"
 IconURL = "https://slack-files2.s3-us-west-2.amazonaws.com/avatars/2018-06-18/383300443972_adff82647cf3967cb337_72.png"
+
 DEBUG = true
 
 trap(:INT) { exit }
 STDOUT.sync = true
 @logger = Logger.new(STDOUT)
 
-client = Slack::Web::Client.new(token: "token")
+client = Slack::Web::Client.new(token: SlackToken)
 @cache = LruRedux::TTL::Cache.new(8, 300)
 
 def get_server
