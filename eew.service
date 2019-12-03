@@ -1,0 +1,11 @@
+[Unit]
+Description=WNI EEW
+After=syslog.target network.target auditd.service
+
+[Service]
+ExecStart=/usr/bin/ruby /path/to/eew.rb
+Restart=always
+#User=user
+
+[Install]
+WantedBy=multi-user.target
